@@ -244,6 +244,9 @@ def detail(h):
     plan = f'<figure class="plan"><img src="{pre}img/homes/{h["no"]}-plan.jpg" alt="Floor plan (Japanese)" loading="lazy"><figcaption>Floor plan (in Japanese — we translate it on request)</figcaption></figure>'
     video = f'<div class="video"><iframe src="https://www.youtube-nocookie.com/embed/{h["video"]}" title="Video tour of No. {h["no"]}" loading="lazy" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe></div>' if h["video"] else ""
     tour_img = pre + img(h["no"], min(2, n))
+    from PIL import Image as _I
+    _o = ROOT / "data" / "img-orig" / f"{h['no']}-01.jpg"
+    lowres = " lowres" if _o.exists() and _I.open(_o).width < 1000 else ""
     tour = (f'<section class="d-sec"><h2>360° virtual tour</h2><a class="tour" href="{h["tour"]}" rel="noopener" target="_blank" style="background-image:url({tour_img})">'
             f'<span class="tour-in"><span class="tour-ico" aria-hidden="true">360°</span><strong>Walk through the house</strong><span>Look around every room in 360°, from your own sofa. Opens the Iga City virtual tour in a new tab ↗</span></span></a></section>') if h.get("tour") else ""
     rows = [("Location", f'{h["place"]}, Iga, Mie <span class="ja">{h["place_ja"]}</span>'), ("Area", f"{a_en} <span class='ja'>{a_ja}エリア</span>"),
@@ -267,7 +270,7 @@ def detail(h):
         </div>
         <div class="d-price"><strong>{yen(h['price'])}</strong>{fx(h['price'])}</div>
       </div>
-      <div class="gallery">
+      <div class="gallery{lowres}">
         <div class="g-main"><img src="{pre}{img(h['no'],1)}" alt="Photo of the house"></div>
         {f'<div class="g-thumbs">{thumbs}</div>' if n > 1 else ''}
       </div>
