@@ -123,5 +123,7 @@ HOMES = [
        tags=["Kominka", "Mountain view", "Countryside", "Farmland", "Garden", "Near school"], photos=4, video="rPrkVi0-pZ4", tour="https://r77870331.theta360.biz/t/45d20e26-8806-11f1-906f-0a2791954d95-1", lat=34.7970, lng=136.1140),
 ]
 
-EUR_RATE = 185  # ¥ per €1 — approximate (Aug 2026). 【要確認】update before publishing.
+# Fallback exchange rates (1 JPY in each currency) — used only until the live daily rates load.
+# Live rates: European Central Bank reference rates via api.frankfurter.dev, checked once a day in the browser.
+FX_FALLBACK = {"date": "2026-10-15", "USD": 0.00633, "EUR": 0.00565, "GBP": 0.00478}
 FEE_RATE = 0.10  # buyer support fee — 【要確認】legal structure (see docs/brief.md)

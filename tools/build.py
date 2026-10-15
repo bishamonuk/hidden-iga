@@ -7,7 +7,8 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "data"))
-from homes import HOMES, EUR_RATE, FEE_RATE  # noqa: E402
+import json
+from homes import HOMES, FX_FALLBACK, FEE_RATE  # noqa: E402
 
 SITE = ROOT / "site"
 BRAND = "Iga Akiya"            # 【要確認】working name
@@ -24,9 +25,11 @@ def yen(man):
     return f"¥{man * 10000:,}"
 
 
-def eur(man):
-    v = man * 10000 / EUR_RATE
-    return f"€{round(v, -2):,.0f}"
+def fx(man):
+    """Approximate foreign-currency price; the shown value (EUR) is replaced in the browser by the visitor's currency."""
+    yen_v = int(man * 10000)
+    v = yen_v * FX_FALLBACK["EUR"]
+    return f'<span class="fx" data-yen="{yen_v}">≈ €{round(v, -2):,.0f}</span>'
 
 
 def fee(man):
@@ -61,6 +64,7 @@ def head(title, desc, pre):
         <a href="{pre}index.html#how">How it works</a>
         <a href="{pre}index.html#fees">Fees</a>
         <a href="{pre}index.html#faq">FAQ</a>
+        <label class="cur"><span class="sr">Currency</span><select data-cur aria-label="Show prices in"><option value="EUR">€ EUR</option><option value="GBP">£ GBP</option><option value="USD">$ USD</option></select></label>
         <a class="btn btn-ink" href="{pre}index.html#contact">Enquire</a>
       </nav>
       <button class="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Open menu"><span></span><span></span></button>
@@ -84,6 +88,7 @@ def foot(pre):
       </div>
     </div>
   </footer>
+  <script>window.FX_FALLBACK = {json.dumps(FX_FALLBACK)};</script>
   <script src="{pre}js/main.js"></script>
 </body>
 </html>
@@ -102,7 +107,7 @@ def card(h, pre=""):
               <h3>{e(h['title'])}</h3>
               <ul class="card-facts"><li>{h['layout']}</li><li>{h['floor']:,.0f} m² house</li><li>{h['land']:,.0f} m² land</li></ul>
               <ul class="card-tags">{tags}</ul>
-              <p class="card-price"><strong>{yen(h['price'])}</strong><span>≈ {eur(h['price'])}</span></p>
+              <p class="card-price"><strong>{yen(h['price'])}</strong>{fx(h['price'])}</p>
             </div>
           </a>
         </li>'''
@@ -153,7 +158,7 @@ def index():
         </div>
         <ul class="cards">{cards}
         </ul>
-        <p class="note">Euro prices are approximate (¥{EUR_RATE} = €1). Kominka = a traditional Japanese house, usually timber-framed and built before the 1980s. Layout codes: “8DK” = 8 rooms plus a dining-kitchen.</p>
+        <p class="note"><span data-fx-note>Approximate prices in your currency use the European Central Bank reference rate, updated daily.</span> Kominka = a traditional Japanese house, usually timber-framed and built before the 1980s. Layout codes: “8DK” = 8 rooms plus a dining-kitchen.</p>
       </div>
     </section>
 
@@ -193,14 +198,14 @@ def index():
           <p class="small">Other costs paid directly by the buyer: the licensed agent's brokerage fee (capped by Japanese law), registration and scrivener fees, real estate acquisition tax, stamp duty and fixed asset tax. We give you an estimate before you make an offer.</p>
           <p class="tbc">【要確認】Fee structure and wording to be confirmed by a Japanese real-estate specialist before publishing (see brief).</p>
         </div>
-        <div class="calc rv" data-rate="{EUR_RATE}" data-fee="{FEE_RATE}">
+        <div class="calc rv" data-fee="{FEE_RATE}">
           <label for="calc-price">Example: house price (¥)</label>
           <input id="calc-price" type="range" min="1000000" max="20000000" step="100000" value="{ex*10000}">
           <dl>
             <div><dt>House price</dt><dd data-o="price">{yen(ex)}</dd></div>
             <div><dt>Buyer support fee ({FEE_RATE*100:.0f}%)</dt><dd data-o="fee">{yen(int(fee(ex)))}</dd></div>
             <div class="total"><dt>Total</dt><dd data-o="total">{yen(int(ex + fee(ex)))}</dd></div>
-            <div class="eur"><dt>≈ in euros</dt><dd data-o="eur">{eur(ex + fee(ex))}</dd></div>
+            <div class="eur"><dt>≈ in <span data-fx-name>euros</span></dt><dd data-o="eur">{fx(ex + fee(ex))}</dd></div>
           </dl>
         </div>
       </div>
@@ -260,7 +265,7 @@ def detail(h):
           <h1>{e(h['title'])}</h1>
           <ul class="card-tags">{"".join(f"<li>{e(t)}</li>" for t in h["tags"])}</ul>
         </div>
-        <div class="d-price"><strong>{yen(h['price'])}</strong><span>≈ {eur(h['price'])}</span></div>
+        <div class="d-price"><strong>{yen(h['price'])}</strong>{fx(h['price'])}</div>
       </div>
       <div class="gallery">
         <div class="g-main"><img src="{pre}{img(h['no'],1)}" alt="Photo of the house"></div>
@@ -282,7 +287,7 @@ def detail(h):
               <div><dt>Asking price</dt><dd>{yen(h['price'])}</dd></div>
               <div><dt>Buyer support fee ({FEE_RATE*100:.0f}%)</dt><dd>{yen(int(fee(h['price'])))}</dd></div>
               <div class="total"><dt>Total</dt><dd>{yen(int(total))}</dd></div>
-              <div class="eur"><dt>≈ in euros</dt><dd>{eur(total)}</dd></div>
+              <div class="eur"><dt>≈ in <span data-fx-name>euros</span></dt><dd>{fx(total)}</dd></div>
             </dl>
             <p class="small">Plus the agent's fee, taxes and registration costs. 【要確認】</p>
             <a class="btn btn-ink" href="mailto:{EMAIL}?subject=Home%20No.%20{h['no']}%20({h['place']})">Enquire about this home</a>

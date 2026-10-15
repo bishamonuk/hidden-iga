@@ -221,3 +221,11 @@ h1 em, h2 em { font-style: italic; color: var(--moss); }
 .tour-in span:last-child { font-size: 14px; color: rgba(251, 249, 244, .85); }
 .side-tour { width: 100%; margin-top: 10px; }
 @media (max-width: 760px) { .tour { aspect-ratio: 4 / 3; } }
+
+/* currency switcher */
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.cur select { font: 500 14px var(--f-body); color: var(--ink); background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 8px 12px; cursor: pointer; }
+.cur select:hover { border-color: var(--ink); }
+.fx { white-space: nowrap; }
+.calc .eur dd .fx { color: #E9D7AE; }
+@media (max-width: 760px) { .cur select { font-size: 18px; padding: 10px 18px; } }

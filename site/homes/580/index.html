@@ -21,6 +21,7 @@
         <a href="../../index.html#how">How it works</a>
         <a href="../../index.html#fees">Fees</a>
         <a href="../../index.html#faq">FAQ</a>
+        <label class="cur"><span class="sr">Currency</span><select data-cur aria-label="Show prices in"><option value="EUR">€ EUR</option><option value="GBP">£ GBP</option><option value="USD">$ USD</option></select></label>
         <a class="btn btn-ink" href="../../index.html#contact">Enquire</a>
       </nav>
       <button class="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Open menu"><span></span><span></span></button>
@@ -36,7 +37,7 @@
           <h1>Kominka within walking distance of station, shops and convenience store</h1>
           <ul class="card-tags"><li>Kominka</li><li>Farmland</li><li>Garden</li><li>Shops nearby</li><li>Near school</li><li>Near station</li></ul>
         </div>
-        <div class="d-price"><strong>¥6,500,000</strong><span>≈ €35,100</span></div>
+        <div class="d-price"><strong>¥6,500,000</strong><span class="fx" data-yen="6500000">≈ €36,700</span></div>
       </div>
       <div class="gallery">
         <div class="g-main"><img src="../../img/homes/580-01.jpg" alt="Photo of the house"></div>
@@ -58,7 +59,7 @@
               <div><dt>Asking price</dt><dd>¥6,500,000</dd></div>
               <div><dt>Buyer support fee (10%)</dt><dd>¥650,000</dd></div>
               <div class="total"><dt>Total</dt><dd>¥7,150,000</dd></div>
-              <div class="eur"><dt>≈ in euros</dt><dd>€38,600</dd></div>
+              <div class="eur"><dt>≈ in <span data-fx-name>euros</span></dt><dd><span class="fx" data-yen="7150000">≈ €40,400</span></dd></div>
             </dl>
             <p class="small">Plus the agent's fee, taxes and registration costs. 【要確認】</p>
             <a class="btn btn-ink" href="mailto:hello@example.com?subject=Home%20No.%20580%20(Ao)">Enquire about this home</a>
@@ -76,7 +77,7 @@
               <h3>Large two-storey kominka with a 478 m² field</h3>
               <ul class="card-facts"><li>10DK</li><li>286 m² house</li><li>766 m² land</li></ul>
               <ul class="card-tags"><li>Kominka</li><li>Countryside</li><li>Farmland</li></ul>
-              <p class="card-price"><strong>¥6,000,000</strong><span>≈ €32,400</span></p>
+              <p class="card-price"><strong>¥6,000,000</strong><span class="fx" data-yen="6000000">≈ €33,900</span></p>
             </div>
           </a>
         </li>
@@ -88,7 +89,7 @@
               <h3>Kominka with a two-storey storehouse and a field nearby</h3>
               <ul class="card-facts"><li>10DK</li><li>134 m² house</li><li>445 m² land</li></ul>
               <ul class="card-tags"><li>Kominka</li><li>Mountain view</li><li>Countryside</li></ul>
-              <p class="card-price"><strong>¥5,800,000</strong><span>≈ €31,400</span></p>
+              <p class="card-price"><strong>¥5,800,000</strong><span class="fx" data-yen="5800000">≈ €32,800</span></p>
             </div>
           </a>
         </li>
@@ -100,7 +101,7 @@
               <h3>Two-storey kominka with its original kamado stove</h3>
               <ul class="card-facts"><li>12K</li><li>280 m² house</li><li>458 m² land</li></ul>
               <ul class="card-tags"><li>Kominka</li><li>Countryside</li><li>Garden</li></ul>
-              <p class="card-price"><strong>¥5,500,000</strong><span>≈ €29,700</span></p>
+              <p class="card-price"><strong>¥5,500,000</strong><span class="fx" data-yen="5500000">≈ €31,100</span></p>
             </div>
           </a>
         </li></ul></section>
@@ -120,6 +121,7 @@
       </div>
     </div>
   </footer>
+  <script>window.FX_FALLBACK = {"date": "2026-10-15", "USD": 0.00633, "EUR": 0.00565, "GBP": 0.00478};</script>
   <script src="../../js/main.js"></script>
 </body>
 </html>

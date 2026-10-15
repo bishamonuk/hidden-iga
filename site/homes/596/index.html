@@ -21,6 +21,7 @@
         <a href="../../index.html#how">How it works</a>
         <a href="../../index.html#fees">Fees</a>
         <a href="../../index.html#faq">FAQ</a>
+        <label class="cur"><span class="sr">Currency</span><select data-cur aria-label="Show prices in"><option value="EUR">€ EUR</option><option value="GBP">£ GBP</option><option value="USD">$ USD</option></select></label>
         <a class="btn btn-ink" href="../../index.html#contact">Enquire</a>
       </nav>
       <button class="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Open menu"><span></span><span></span></button>
@@ -36,7 +37,7 @@
           <h1>Farmhouse-style kominka, close to a convenience store</h1>
           <ul class="card-tags"><li>Kominka</li><li>Countryside</li><li>Farmland</li><li>Garden</li><li>Shops nearby</li></ul>
         </div>
-        <div class="d-price"><strong>¥2,500,000</strong><span>≈ €13,500</span></div>
+        <div class="d-price"><strong>¥2,500,000</strong><span class="fx" data-yen="2500000">≈ €14,100</span></div>
       </div>
       <div class="gallery">
         <div class="g-main"><img src="../../img/homes/596-01.jpg" alt="Photo of the house"></div>
@@ -58,7 +59,7 @@
               <div><dt>Asking price</dt><dd>¥2,500,000</dd></div>
               <div><dt>Buyer support fee (10%)</dt><dd>¥250,000</dd></div>
               <div class="total"><dt>Total</dt><dd>¥2,750,000</dd></div>
-              <div class="eur"><dt>≈ in euros</dt><dd>€14,900</dd></div>
+              <div class="eur"><dt>≈ in <span data-fx-name>euros</span></dt><dd><span class="fx" data-yen="2750000">≈ €15,500</span></dd></div>
             </dl>
             <p class="small">Plus the agent's fee, taxes and registration costs. 【要確認】</p>
             <a class="btn btn-ink" href="mailto:hello@example.com?subject=Home%20No.%20596%20(Ōuchi)">Enquire about this home</a>
@@ -76,7 +77,7 @@
               <h3>1992 two-storey house on a generous plot in a quiet residential area</h3>
               <ul class="card-facts"><li>4LDK</li><li>104 m² house</li><li>294 m² land</li></ul>
               <ul class="card-tags"><li>Garden</li></ul>
-              <p class="card-price"><strong>¥2,500,000</strong><span>≈ €13,500</span></p>
+              <p class="card-price"><strong>¥2,500,000</strong><span class="fx" data-yen="2500000">≈ €14,100</span></p>
             </div>
           </a>
         </li>
@@ -88,7 +89,7 @@
               <h3>Single-storey wooden house with a separate two-storey annex</h3>
               <ul class="card-facts"><li>7DK</li><li>108 m² house</li><li>385 m² land</li></ul>
               <ul class="card-tags"><li>Kominka</li><li>Countryside</li></ul>
-              <p class="card-price"><strong>¥2,000,000</strong><span>≈ €10,800</span></p>
+              <p class="card-price"><strong>¥2,000,000</strong><span class="fx" data-yen="2000000">≈ €11,300</span></p>
             </div>
           </a>
         </li>
@@ -100,7 +101,7 @@
               <h3>Two-storey 1961 house, 900 m from Shimagahara Station</h3>
               <ul class="card-facts"><li>12K</li><li>195 m² house</li><li>400 m² land</li></ul>
               <ul class="card-tags"><li>Kominka</li><li>Countryside</li><li>Garden</li></ul>
-              <p class="card-price"><strong>¥3,000,000</strong><span>≈ €16,200</span></p>
+              <p class="card-price"><strong>¥3,000,000</strong><span class="fx" data-yen="3000000">≈ €17,000</span></p>
             </div>
           </a>
         </li></ul></section>
@@ -120,6 +121,7 @@
       </div>
     </div>
   </footer>
+  <script>window.FX_FALLBACK = {"date": "2026-10-15", "USD": 0.00633, "EUR": 0.00565, "GBP": 0.00478};</script>
   <script src="../../js/main.js"></script>
 </body>
 </html>
