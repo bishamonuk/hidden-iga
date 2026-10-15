@@ -15,6 +15,7 @@ BRAND = "Hidden Iga"
 TAGLINE = "Country houses in the land of the ninja"
 MARK = "seal-an.svg"   # logo: 庵 (an / iori — a countryside retreat). Other options in site/img/brand/
 OPERATOR = "[TBC: operating company]"   # 【要確認】
+PARTNER = "Official partner of Iga City"   # 【要確認】exact title of the agreement with Iga City
 EMAIL = "hello@example.com"   # 【要確認】placeholder
 SOURCE = "https://iga-akiyabank.com/bukken/detail.php?no="
 AREA = {"rural": ("Rural farmland", "農村部"), "mountain": ("Mountain foothills", "山間部")}
@@ -86,7 +87,7 @@ def foot(pre):
         <p>{TAGLINE}. Country homes in Iga, Japan — explained in English for buyers in Europe and North America.</p>
       </div>
       <div class="ft-small">
-        <p>Listing information is taken from the Iga City Akiya Bank (伊賀流空き家バンク), run by Iga City Hall. {BRAND} is an independent service and is not operated by Iga City. Details can change — always check the original listing.</p>
+        <p>Listing information is taken from the Iga City Akiya Bank (伊賀流空き家バンク), run by Iga City Hall. {BRAND} works as an official agent with the backing of Iga City Hall (伊賀市). 【要確認】 Details can change — always check the original listing.</p>
         <p>Operated by {OPERATOR}.</p>
         <p class="tbc">【要確認】Draft for review — not yet published.</p>
       </div>
@@ -134,6 +135,7 @@ def index():
         <h1>Your own hideaway<br><em>in the Japanese countryside.</em></h1>
         <p class="lead">Old farmhouses with gardens, fields and storehouses, in the rice valleys and wooded hills of Iga — from {yen(lo)}. A second home far from the crowds, for weekends, long summers or a slower life. We bring the Iga City Akiya Bank into English and guide you from the first viewing to the keys.</p>
         <div class="hero-cta"><a class="btn btn-ink" href="#homes">See the {len(HOMES)} homes</a><a class="btn btn-line" href="#how">How buying works</a></div>
+        <p class="official"><span class="official-ico" aria-hidden="true">✓</span>{PARTNER} <span>· backed by Iga City Hall’s Akiya Bank programme</span></p>
       </div>
     </section>
 
@@ -202,6 +204,15 @@ def index():
           <li class="rv"><span>04</span><h3>Pay &amp; register</h3><p>We guide you through the international payment, the judicial scrivener who registers your title, and the taxes due on purchase.</p></li>
           <li class="rv"><span>05</span><h3>Move in &amp; relax</h3><p>Keys, utilities and local contractors — and a caretaker on the ground who looks after the house whenever you are away.</p></li>
         </ol>
+        <div class="partner rv">
+          <img src="img/brand/{MARK}" alt="" width="64" height="64">
+          <div>
+            <p class="kicker">{PARTNER}</p>
+            <h3>Working hand in hand with Iga City</h3>
+            <p>{BRAND} is an official agent working with the backing of Iga City Hall, which runs the Iga City Akiya Bank. That means the listings, inspection notes and viewings come straight from the city — and you buy with the reassurance of a local authority behind the process.</p>
+            <p class="tbc">【要確認】Exact name of the agreement or role with Iga City, and permission to state it, before publishing.</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -331,6 +342,7 @@ def detail(h):
             <p class="small">Plus the agent's fee, taxes and registration costs. 【要確認】</p>
             <a class="btn btn-ink" href="mailto:{EMAIL}?subject=Home%20No.%20{h['no']}%20({h['place']})">Enquire about this home</a>
             {f'<a class="btn btn-line side-tour" href="{h["tour"]}" rel="noopener" target="_blank">360° virtual tour ↗</a>' if h.get('tour') else ''}
+            <p class="side-official"><span aria-hidden="true">✓</span> {PARTNER}</p>
             <a class="src" href="{SOURCE}{h['no']}" rel="noopener" target="_blank">Original listing (Japanese) ↗</a>
           </div>
         </aside>
