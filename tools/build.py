@@ -13,7 +13,7 @@ from homes import HOMES, FX_FALLBACK, FEE_RATE  # noqa: E402
 SITE = ROOT / "site"
 BRAND = "Hidden Iga"
 TAGLINE = "Country houses in the land of the ninja"
-MARK = "mark-b.svg"   # logo mark: mark-a (roof & moon), mark-b (hanko 隠), mark-c (hills in the mist)
+MARK = "seal-an.svg"   # logo: 庵 (an / iori — a countryside retreat). Other options in site/img/brand/
 OPERATOR = "[TBC: operating company]"   # 【要確認】
 EMAIL = "hello@example.com"   # 【要確認】placeholder
 SOURCE = "https://iga-akiyabank.com/bukken/detail.php?no="
