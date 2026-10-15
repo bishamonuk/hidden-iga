@@ -271,3 +271,19 @@ h1 em, h2 em { font-style: italic; color: var(--moss); }
 .partner .kicker { margin-bottom: 8px; color: var(--moss); }
 .side-official { margin: 16px 0 0; font-size: 13px; font-weight: 600; color: var(--moss); text-align: center; }
 @media (max-width: 760px) { .official span:not(.official-ico) { display: none; } .partner { grid-template-columns: 1fr; } }
+
+/* ---- language switch + Japanese pages ---- */
+.lang-link { font-size: 13px; letter-spacing: .04em; text-decoration: none; padding: 4px 10px; border: 1px solid var(--line); border-radius: 999px; color: var(--ink-2); }
+.lang-link:hover { color: var(--ink); border-color: var(--ink); }
+html[lang="ja"] { --f-head: "Shippori Mincho", "Newsreader", "Yu Mincho", serif; --f-body: "Noto Sans JP", "Inter", "Hiragino Sans", "Yu Gothic", sans-serif; }
+html[lang="ja"] body { font-size: 15px; line-height: 1.9; letter-spacing: .02em; }
+html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3 { font-weight: 500; letter-spacing: .02em; line-height: 1.45; }
+html[lang="ja"] .hero h1 { font-size: clamp(32px, 5vw, 62px); }
+html[lang="ja"] h2 { font-size: clamp(26px, 3.4vw, 40px); }
+html[lang="ja"] h1 em, html[lang="ja"] h2 em { font-style: normal; }
+html[lang="ja"] .logo, html[lang="ja"] .logo-wm { font-family: "Newsreader", Georgia, serif; }
+html[lang="ja"] .kicker { letter-spacing: .12em; }
+html[lang="ja"] .d-head h1 { font-size: clamp(24px, 3.2vw, 38px); }
+html[lang="ja"] h1 em, html[lang="ja"] h2 em { display: inline-block; }
+html[lang="ja"] .strip strong { font-size: clamp(20px, 1.1vw + 12px, 27px); }
+@media (max-width: 600px) { html[lang="ja"] .hero h1 { font-size: 29px; } html[lang="ja"] .strip strong { font-size: 19px; } }

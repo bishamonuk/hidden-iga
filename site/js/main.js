@@ -98,7 +98,7 @@
     const upd = () => {
       const p = +input.value, f = p * fee;
       out('price').textContent = yen(p); out('fee').textContent = yen(f); out('total').textContent = yen(p + f);
-      const span = out('eur').querySelector('.fx'); span.dataset.yen = p + f; span.textContent = '≈ ' + money(p + f);
+      const row = out('eur'); const span = row && row.querySelector('.fx'); if (span) { span.dataset.yen = p + f; span.textContent = '≈ ' + money(p + f); }
     };
     input.addEventListener('input', upd); upd();
   }

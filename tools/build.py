@@ -43,7 +43,7 @@ def img(no, k):
     return f"img/homes/{no}-{k:02d}.jpg"
 
 
-def head(title, desc, pre):
+def head(title, desc, pre, alt=""):
     return f'''<!doctype html>
 <html lang="en-GB" class="no-js">
 <head>
@@ -70,6 +70,7 @@ def head(title, desc, pre):
         <a href="{pre}index.html#fees">Fees</a>
         <a href="{pre}index.html#faq">FAQ</a>
         <label class="cur"><span class="sr">Currency</span><select data-cur aria-label="Show prices in"><option value="EUR">€ EUR</option><option value="GBP">£ GBP</option><option value="USD">$ USD</option></select></label>
+        {f'<a class="lang-link" href="{alt}" hreflang="ja" lang="ja">日本語</a>' if alt else ''}
         <a class="btn btn-ink" href="{pre}index.html#contact">Enquire</a>
       </nav>
       <button class="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Open menu"><span></span><span></span></button>
@@ -126,7 +127,7 @@ def index():
     lo, hi = homes[0]["price"], homes[-1]["price"]
     ex = 500
     return head(f"{BRAND} — Your own hideaway in the Japanese countryside",
-                "Your own hideaway in the Japanese countryside: traditional country houses (kominka) for sale in the rural and mountain areas of Iga, Japan. Explained in English, with support for buyers from Europe and North America.", "") + f'''
+                "Your own hideaway in the Japanese countryside: traditional country houses (kominka) for sale in the rural and mountain areas of Iga, Japan. Explained in English, with support for buyers from Europe and North America.", "", alt="ja/index.html") + f'''
   <main id="main">
     <section class="hero">
       <div class="hero-img"><img src="{img(614,1)}" alt="A traditional country house in Kōno, Iga"></div>
@@ -305,7 +306,7 @@ def detail(h):
     others = [x for x in sorted(HOMES, key=lambda x: abs(x["price"] - h["price"])) if x["no"] != h["no"]][:3]
     more = "".join(card(x, pre) for x in others)
     total = h["price"] + fee(h["price"])
-    return head(f"{h['title']} — {h['place']}, Iga | {BRAND}", f"{h['layout']} house for sale in {h['place']}, Iga, Japan. {yen(h['price'])}.", pre) + f'''
+    return head(f"{h['title']} — {h['place']}, Iga | {BRAND}", f"{h['layout']} house for sale in {h['place']}, Iga, Japan. {yen(h['price'])}.", pre, alt=f"{pre}ja/homes/{h['no']}/index.html") + f'''
   <main id="main" class="detail">
     <div class="wrap">
       <nav class="crumb" aria-label="Breadcrumb"><a href="{pre}index.html#homes">Homes</a> / <span>No. {h['no']}</span></nav>
