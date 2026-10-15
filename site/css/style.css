@@ -36,7 +36,9 @@ h1 em, h2 em { font-style: italic; color: var(--moss); }
 .hd { position: sticky; top: 0; z-index: 50; background: rgba(243, 238, 229, .92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
 .hd-in { display: flex; align-items: center; justify-content: space-between; height: 70px; }
 .logo { display: inline-flex; align-items: center; gap: 10px; font-family: var(--f-head); font-size: 23px; text-decoration: none; }
-.logo-mark { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--kaki); color: var(--white); font: 600 16px "Noto Serif JP", "Yu Mincho", serif; }
+.logo-mark { width: 34px; height: 34px; }
+.logo-wm em { font-style: italic; color: var(--moss); }
+.ft .logo-wm em { color: #C9B48A; }
 .nav { display: flex; align-items: center; gap: clamp(16px, 2.2vw, 30px); font-size: 15px; }
 .nav a:not(.btn) { text-decoration: none; color: var(--ink-2); }
 .nav a:not(.btn):hover { color: var(--ink); }

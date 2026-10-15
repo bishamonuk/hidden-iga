@@ -11,7 +11,9 @@ import json
 from homes import HOMES, FX_FALLBACK, FEE_RATE  # noqa: E402
 
 SITE = ROOT / "site"
-BRAND = "Iga Akiya"            # 【要確認】working name
+BRAND = "Hidden Iga"
+TAGLINE = "Country houses in the land of the ninja"
+MARK = "mark-b.svg"   # logo mark: mark-a (roof & moon), mark-b (hanko 隠), mark-c (hills in the mist)
 OPERATOR = "[TBC: operating company]"   # 【要確認】
 EMAIL = "hello@example.com"   # 【要確認】placeholder
 SOURCE = "https://iga-akiyabank.com/bukken/detail.php?no="
@@ -51,13 +53,14 @@ def head(title, desc, pre):
   <meta name="description" content="{e(desc)}">
   <meta name="theme-color" content="#F3EEE5">
   {FONTS}
+  <link rel="icon" href="{pre}img/brand/{MARK}" type="image/svg+xml">
   <link rel="stylesheet" href="{pre}css/style.css">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
   <header class="hd">
     <div class="wrap hd-in">
-      <a class="logo" href="{pre}index.html"><span class="logo-mark" aria-hidden="true">伊</span><span>{BRAND}</span></a>
+      <a class="logo" href="{pre}index.html"><img class="logo-mark" src="{pre}img/brand/{MARK}" alt="" width="36" height="36"><span class="logo-wm">Hidden <em>Iga</em></span></a>
       <nav class="nav" id="nav" aria-label="Main">
         <a href="{pre}index.html#homes">Homes</a>
         <a href="{pre}index.html#iga">Why Iga</a>
@@ -78,11 +81,11 @@ def foot(pre):
   <footer class="ft">
     <div class="wrap ft-in">
       <div>
-        <a class="logo" href="{pre}index.html"><span class="logo-mark" aria-hidden="true">伊</span><span>{BRAND}</span></a>
-        <p>Country homes in Iga, Japan — explained in English, for buyers in Europe.</p>
+        <a class="logo" href="{pre}index.html"><img class="logo-mark" src="{pre}img/brand/{MARK}" alt="" width="36" height="36"><span class="logo-wm">Hidden <em>Iga</em></span></a>
+        <p>{TAGLINE}. Country homes in Iga, Japan — explained in English for buyers in Europe and North America.</p>
       </div>
       <div class="ft-small">
-        <p>Listing information is taken from the Iga City Akiya Bank (伊賀流空き家バンク), run by Iga City Hall. Details can change — always check the original listing.</p>
+        <p>Listing information is taken from the Iga City Akiya Bank (伊賀流空き家バンク), run by Iga City Hall. {BRAND} is an independent service and is not operated by Iga City. Details can change — always check the original listing.</p>
         <p>Operated by {OPERATOR}.</p>
         <p class="tbc">【要確認】Draft for review — not yet published.</p>
       </div>
@@ -120,15 +123,15 @@ def index():
     n_m = sum(h["area"] == "mountain" for h in HOMES)
     lo, hi = homes[0]["price"], homes[-1]["price"]
     ex = 500
-    return head(f"{BRAND} — Country houses for sale in Iga, Japan",
-                "Traditional country houses (kominka) for sale in the rural and mountain areas of Iga, Japan. Explained in English, with support for buyers in Europe.", "") + f'''
+    return head(f"{BRAND} — {TAGLINE} | Country houses for sale in Iga, Japan",
+                "Traditional country houses (kominka) for sale in the rural and mountain areas of Iga, Japan. Explained in English, with support for buyers from Europe and North America.", "") + f'''
   <main id="main">
     <section class="hero">
       <div class="hero-img"><img src="{img(614,1)}" alt="A traditional country house in Kōno, Iga"></div>
       <div class="wrap hero-in">
-        <p class="kicker">Iga · Mie Prefecture · Japan</p>
+        <p class="kicker">{TAGLINE}</p>
         <h1>A house in the Japanese countryside,<br><em>from {yen(lo)}.</em></h1>
-        <p class="lead">Old farmhouses with gardens, fields and storehouses, in the rice-growing valleys and wooded hills of Iga. We bring the listings of the Iga City Akiya Bank into English, and help buyers in Europe through every step — from the first viewing to the keys.</p>
+        <p class="lead">Old farmhouses with gardens, fields and storehouses, in the rice-growing valleys and wooded hills of Iga. We bring the listings of the Iga City Akiya Bank into English, and help buyers from Europe and North America through every step — from the first viewing to the keys.</p>
         <div class="hero-cta"><a class="btn btn-ink" href="#homes">See the {len(HOMES)} homes</a><a class="btn btn-line" href="#how">How buying works</a></div>
       </div>
     </section>
@@ -178,7 +181,7 @@ def index():
 
     <section class="sec" id="how">
       <div class="wrap">
-        <div class="sec-head"><div><p class="kicker">How it works</p><h2>From Europe to <em>your own front door</em></h2></div></div>
+        <div class="sec-head"><div><p class="kicker">How it works</p><h2>From home to <em>your own front door in Japan</em></h2></div></div>
         <ol class="steps">
           <li class="rv"><span>01</span><h3>Choose</h3><p>Browse the homes in English. Ask us anything — we translate the full listing, inspection notes and floor plan.</p></li>
           <li class="rv"><span>02</span><h3>Register &amp; view</h3><p>Viewings are booked through the Iga City Akiya Bank, which asks buyers to register first. We prepare the registration with you and arrange a viewing — in person or by video.</p></li>
