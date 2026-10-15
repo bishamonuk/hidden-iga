@@ -96,7 +96,7 @@ def card(h, pre=""):
     return f'''
         <li class="card rv" data-area="{h['area']}" data-price="{h['price']}">
           <a href="{pre}homes/{h['no']}/index.html">
-            <div class="card-img"><img src="{pre}{img(h['no'],1)}" alt="" loading="lazy"><span class="card-area">{a_en}</span></div>
+            <div class="card-img"><img src="{pre}{img(h['no'],1)}" alt="" loading="lazy"><span class="card-area">{a_en}</span>{'<span class="card-360">360° tour</span>' if h.get('tour') else ''}</div>
             <div class="card-body">
               <p class="card-place">{e(h['place'])}, Iga <span>No. {h['no']}</span></p>
               <h3>{e(h['title'])}</h3>
@@ -238,6 +238,9 @@ def detail(h):
     thumbs = "".join(f'<button type="button" data-src="{pre}{img(h["no"],k)}"{" class=on" if k==1 else ""}><img src="{pre}{img(h["no"],k)}" alt="Photo {k}" loading="lazy"></button>' for k in range(1, n + 1))
     plan = f'<figure class="plan"><img src="{pre}img/homes/{h["no"]}-plan.jpg" alt="Floor plan (Japanese)" loading="lazy"><figcaption>Floor plan (in Japanese — we translate it on request)</figcaption></figure>'
     video = f'<div class="video"><iframe src="https://www.youtube-nocookie.com/embed/{h["video"]}" title="Video tour of No. {h["no"]}" loading="lazy" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe></div>' if h["video"] else ""
+    tour_img = pre + img(h["no"], min(2, n))
+    tour = (f'<section class="d-sec"><h2>360° virtual tour</h2><a class="tour" href="{h["tour"]}" rel="noopener" target="_blank" style="background-image:url({tour_img})">'
+            f'<span class="tour-in"><span class="tour-ico" aria-hidden="true">360°</span><strong>Walk through the house</strong><span>Look around every room in 360°, from your own sofa. Opens the Iga City virtual tour in a new tab ↗</span></span></a></section>') if h.get("tour") else ""
     rows = [("Location", f'{h["place"]}, Iga, Mie <span class="ja">{h["place_ja"]}</span>'), ("Area", f"{a_en} <span class='ja'>{a_ja}エリア</span>"),
             ("Layout", h["layout"]), ("Structure", h["structure"]), ("Built", h["built"]),
             ("Land", f'{h["land"]:,.2f} m²'), ("Floor area", f'{h["floor"]:,.2f} m²'),
@@ -267,6 +270,7 @@ def detail(h):
         <div>
           <section class="d-sec"><h2>Condition</h2><p class="cond">{e(h['condition'])}</p><p class="small">From the Iga City Akiya Bank survey. We translate the full inspection notes on request.</p></section>
           <section class="d-sec"><h2>Key facts</h2><dl class="facts">{table}</dl></section>
+          {tour}
           {f'<section class="d-sec"><h2>Video tour</h2>{video}</section>' if video else ''}
           <section class="d-sec"><h2>Floor plan</h2>{plan}</section>
           <section class="d-sec"><h2>Location</h2><p class="small">The exact address is shared after registration — the map shows the district.</p><div class="map"><iframe title="Map of {e(h['place'])}, Iga" src="https://www.google.com/maps?q={h['lat']},{h['lng']}&amp;z=13&amp;output=embed" loading="lazy"></iframe></div></section>
@@ -282,6 +286,7 @@ def detail(h):
             </dl>
             <p class="small">Plus the agent's fee, taxes and registration costs. 【要確認】</p>
             <a class="btn btn-ink" href="mailto:{EMAIL}?subject=Home%20No.%20{h['no']}%20({h['place']})">Enquire about this home</a>
+            {f'<a class="btn btn-line side-tour" href="{h["tour"]}" rel="noopener" target="_blank">360° virtual tour ↗</a>' if h.get('tour') else ''}
             <a class="src" href="{SOURCE}{h['no']}" rel="noopener" target="_blank">Original listing (Japanese) ↗</a>
           </div>
         </aside>
