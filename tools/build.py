@@ -123,15 +123,15 @@ def index():
     n_m = sum(h["area"] == "mountain" for h in HOMES)
     lo, hi = homes[0]["price"], homes[-1]["price"]
     ex = 500
-    return head(f"{BRAND} — {TAGLINE} | Country houses for sale in Iga, Japan",
-                "Traditional country houses (kominka) for sale in the rural and mountain areas of Iga, Japan. Explained in English, with support for buyers from Europe and North America.", "") + f'''
+    return head(f"{BRAND} — Your own hideaway in the Japanese countryside",
+                "Your own hideaway in the Japanese countryside: traditional country houses (kominka) for sale in the rural and mountain areas of Iga, Japan. Explained in English, with support for buyers from Europe and North America.", "") + f'''
   <main id="main">
     <section class="hero">
       <div class="hero-img"><img src="{img(614,1)}" alt="A traditional country house in Kōno, Iga"></div>
       <div class="wrap hero-in">
         <p class="kicker">{TAGLINE}</p>
-        <h1>A house in the Japanese countryside,<br><em>from {yen(lo)}.</em></h1>
-        <p class="lead">Old farmhouses with gardens, fields and storehouses, in the rice-growing valleys and wooded hills of Iga. We bring the listings of the Iga City Akiya Bank into English, and help buyers from Europe and North America through every step — from the first viewing to the keys.</p>
+        <h1>Your own hideaway<br><em>in the Japanese countryside.</em></h1>
+        <p class="lead">Old farmhouses with gardens, fields and storehouses, in the rice valleys and wooded hills of Iga — from {yen(lo)}. A second home far from the crowds, for weekends, long summers or a slower life. We bring the Iga City Akiya Bank into English and guide you from the first viewing to the keys.</p>
         <div class="hero-cta"><a class="btn btn-ink" href="#homes">See the {len(HOMES)} homes</a><a class="btn btn-line" href="#how">How buying works</a></div>
       </div>
     </section>
@@ -142,6 +142,18 @@ def index():
         <div><strong>{yen(lo)}–{yen(hi)}</strong><span>asking prices</span></div>
         <div><strong>{n_r} · {n_m}</strong><span>rural · mountain</span></div>
         <div><strong>{FEE_RATE*100:.0f}%</strong><span>buyer support fee</span></div>
+      </div>
+    </section>
+
+    <section class="sec an" id="an">
+      <div class="wrap an-in">
+        <img class="an-seal rv" src="img/brand/{MARK}" alt="庵" width="160" height="160">
+        <div class="rv">
+          <p class="kicker">庵 · an</p>
+          <h2>Every hideaway <em>has a name.</em></h2>
+          <p>In Japan, an <em>an</em> (庵) is a small house in the hills — a retreat for rest, reading, tea and quiet, a step away from the city. Poets and tea masters have kept them for centuries. Iga’s most famous son, the haiku poet Matsuo Bashō, even took his name from his: the Bashō-an.</p>
+          <p>Hidden Iga helps you find yours. A house with a garden to sit in, a field to grow things, a storehouse full of stories — and a village that will be glad to see the lights on again.</p>
+        </div>
       </div>
     </section>
 

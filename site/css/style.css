@@ -235,3 +235,12 @@ h1 em, h2 em { font-style: italic; color: var(--moss); }
 /* listings whose original photos are small: show them a little smaller so they stay sharp */
 .gallery.lowres { max-width: 880px; }
 .gallery.lowres .g-main { aspect-ratio: 4 / 3; }
+
+/* 庵 intro */
+.an { background: var(--white); }
+.an-in { display: grid; grid-template-columns: 200px 1fr; gap: clamp(32px, 6vw, 88px); align-items: center; max-width: 1000px; }
+.an-seal { width: clamp(110px, 14vw, 180px); height: auto; justify-self: center; transform: rotate(-4deg); filter: drop-shadow(0 14px 18px rgba(185, 83, 42, .28)); }
+.an h2 { font-size: clamp(32px, 2.4vw + 16px, 50px); margin-bottom: 20px; }
+.an p:not(.kicker) { color: var(--ink-2); font-size: 17px; max-width: 36em; }
+.an p em { font-family: var(--f-head); font-size: 1.1em; color: var(--ink); }
+@media (max-width: 760px) { .an-in { grid-template-columns: 1fr; } .an-seal { justify-self: start; } }
