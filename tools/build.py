@@ -65,6 +65,7 @@ def head(title, desc, pre):
         <a href="{pre}index.html#homes">Homes</a>
         <a href="{pre}index.html#iga">Why Iga</a>
         <a href="{pre}index.html#how">How it works</a>
+        <a href="{pre}index.html#care">Home care</a>
         <a href="{pre}index.html#fees">Fees</a>
         <a href="{pre}index.html#faq">FAQ</a>
         <label class="cur"><span class="sr">Currency</span><select data-cur aria-label="Show prices in"><option value="EUR">€ EUR</option><option value="GBP">£ GBP</option><option value="USD">$ USD</option></select></label>
@@ -199,8 +200,27 @@ def index():
           <li class="rv"><span>02</span><h3>Register &amp; view</h3><p>Viewings are booked through the Iga City Akiya Bank, which asks buyers to register first. We prepare the registration with you and arrange a viewing — in person or by video.</p></li>
           <li class="rv"><span>03</span><h3>Offer &amp; contract</h3><p>The sale is handled by a licensed Japanese real estate agent. We interpret, explain every document in English, and coordinate with the agent and the seller.</p></li>
           <li class="rv"><span>04</span><h3>Pay &amp; register</h3><p>We guide you through the international payment, the judicial scrivener who registers your title, and the taxes due on purchase.</p></li>
-          <li class="rv"><span>05</span><h3>Move in</h3><p>Keys, utilities, local contractors for repairs and renovation, and help settling into the community.</p></li>
+          <li class="rv"><span>05</span><h3>Move in &amp; relax</h3><p>Keys, utilities and local contractors — and a caretaker on the ground who looks after the house whenever you are away.</p></li>
         </ol>
+      </div>
+    </section>
+
+    <section class="sec care" id="care">
+      <div class="wrap care-in">
+        <div class="care-img rv"><img src="img/homes/564-02.jpg" alt="" loading="lazy"><span class="care-badge">Looked after while you're away</span></div>
+        <div class="rv">
+          <p class="kicker">Home care</p>
+          <h2>Your house, <em>in good hands.</em></h2>
+          <p>A second home is only a joy if you know it’s safe while you’re away. In Iga, a local caretaker looks after your house on your behalf — so it’s ready, aired and cared for whenever you arrive.</p>
+          <ul class="care-list">
+            <li><strong>Regular visits</strong><span>Windows opened, rooms aired and water run, so an old wooden house stays healthy.</span></li>
+            <li><strong>After storms</strong><span>A check of the roof, gutters and garden after heavy rain or typhoons, with photos sent to you.</span></li>
+            <li><strong>Garden &amp; grounds</strong><span>Grass cut and the garden kept tidy, so the neighbours are happy too.</span></li>
+            <li><strong>Repairs</strong><span>Local tradespeople found and supervised, with quotes explained in English.</span></li>
+            <li><strong>Ready for you</strong><span>Keys held, post collected, and the house prepared before you land.</span></li>
+          </ul>
+          <p class="tbc">【要確認】Caretaker services, visit frequency and fees to be confirmed.</p>
+        </div>
       </div>
     </section>
 
@@ -234,6 +254,7 @@ def index():
           <details class="rv"><summary>Can I buy the fields that come with a house?</summary><p>Farmland is different. Buying or transferring it needs permission under Japan's Agricultural Land Act, which is usually given only to people who will farm it. Several listings note this — we check each case with the city and the agent.</p></details>
           <details class="rv"><summary>What condition are the houses in?</summary><p>Many are old and need work — the city lists every known issue, from roof leaks to unusable toilets. We translate these notes in full, and can arrange an inspection and renovation quotes before you commit.</p></details>
           <details class="rv"><summary>Do I need to travel to Japan?</summary><p>We recommend at least one visit. Viewings can start by video, and much of the paperwork can be done remotely, but signing and payment may need you or a representative in Japan.</p></details>
+          <details class="rv"><summary>Who looks after the house when I’m not there?</summary><p>A local caretaker in Iga. They visit regularly to air the house and check it, look at the roof and garden after storms, keep your keys and get everything ready before you arrive — and send you photos and updates in English. 【要確認】</p></details>
           <details class="rv"><summary>Who is the seller?</summary><p>Private owners. The Iga City Akiya Bank publishes the homes, and a licensed real estate agent handles each sale. We are your English-speaking guide through the process.</p></details>
         </div>
       </div>
