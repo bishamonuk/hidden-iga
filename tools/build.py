@@ -67,7 +67,6 @@ def head(title, desc, pre, alt=""):
         <a href="{pre}index.html#iga">Why Iga</a>
         <a href="{pre}index.html#how">How it works</a>
         <a href="{pre}index.html#care">Home care</a>
-        <a href="{pre}index.html#fees">Fees</a>
         <a href="{pre}index.html#faq">FAQ</a>
         <label class="cur"><span class="sr">Currency</span><select data-cur aria-label="Show prices in"><option value="EUR">€ EUR</option><option value="GBP">£ GBP</option><option value="USD">$ USD</option></select></label>
         {f'<a class="lang-link" href="{alt}" hreflang="ja" lang="ja">日本語</a>' if alt else ''}
@@ -145,7 +144,7 @@ def index():
         <div><strong>{len(HOMES)}</strong><span>homes for sale</span></div>
         <div><strong>{yen(lo)}–{yen(hi)}</strong><span>asking prices</span></div>
         <div><strong>{n_r} · {n_m}</strong><span>rural · mountain</span></div>
-        <div><strong>{FEE_RATE*100:.0f}%</strong><span>buyer support fee</span></div>
+        <div><strong>{sum(1 for h in HOMES if h.get('tour'))}</strong><span>with 360° virtual tours</span></div>
       </div>
     </section>
 
@@ -236,28 +235,6 @@ def index():
       </div>
     </section>
 
-    <section class="sec sec-ink" id="fees">
-      <div class="wrap fees-in">
-        <div class="rv">
-          <p class="kicker">Fees</p>
-          <h2>One clear fee: <em>{FEE_RATE*100:.0f}% of the price.</em></h2>
-          <p>Our buyer support fee is {FEE_RATE*100:.0f}% of the purchase price, payable on completion. It covers English support from your first enquiry to moving in.</p>
-          <p class="small">Other costs paid directly by the buyer: the licensed agent's brokerage fee (capped by Japanese law), registration and scrivener fees, real estate acquisition tax, stamp duty and fixed asset tax. We give you an estimate before you make an offer.</p>
-          <p class="tbc">【要確認】Fee structure and wording to be confirmed by a Japanese real-estate specialist before publishing (see brief).</p>
-        </div>
-        <div class="calc rv" data-fee="{FEE_RATE}">
-          <label for="calc-price">Example: house price (¥)</label>
-          <input id="calc-price" type="range" min="1000000" max="20000000" step="100000" value="{ex*10000}">
-          <dl>
-            <div><dt>House price</dt><dd data-o="price">{yen(ex)}</dd></div>
-            <div><dt>Buyer support fee ({FEE_RATE*100:.0f}%)</dt><dd data-o="fee">{yen(int(fee(ex)))}</dd></div>
-            <div class="total"><dt>Total</dt><dd data-o="total">{yen(int(ex + fee(ex)))}</dd></div>
-            <div class="eur"><dt>≈ in <span data-fx-name>euros</span></dt><dd data-o="eur">{fx(ex + fee(ex))}</dd></div>
-          </dl>
-        </div>
-      </div>
-    </section>
-
     <section class="sec" id="faq">
       <div class="wrap faq-in">
         <div><p class="kicker">FAQ</p><h2>Good <em>questions</em></h2></div>
@@ -305,7 +282,6 @@ def detail(h):
     table = "".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in rows)
     others = [x for x in sorted(HOMES, key=lambda x: abs(x["price"] - h["price"])) if x["no"] != h["no"]][:3]
     more = "".join(card(x, pre) for x in others)
-    total = h["price"] + fee(h["price"])
     return head(f"{h['title']} — {h['place']}, Iga | {BRAND}", f"{h['layout']} house for sale in {h['place']}, Iga, Japan. {yen(h['price'])}.", pre, alt=f"{pre}ja/homes/{h['no']}/index.html") + f'''
   <main id="main" class="detail">
     <div class="wrap">
@@ -336,11 +312,9 @@ def detail(h):
             <p class="kicker">No. {h['no']}</p>
             <dl>
               <div><dt>Asking price</dt><dd>{yen(h['price'])}</dd></div>
-              <div><dt>Buyer support fee ({FEE_RATE*100:.0f}%)</dt><dd>{yen(int(fee(h['price'])))}</dd></div>
-              <div class="total"><dt>Total</dt><dd>{yen(int(total))}</dd></div>
-              <div class="eur"><dt>≈ in <span data-fx-name>euros</span></dt><dd>{fx(total)}</dd></div>
+              <div class="eur"><dt>≈ in <span data-fx-name>euros</span></dt><dd>{fx(h['price'])}</dd></div>
             </dl>
-            <p class="small">Plus the agent's fee, taxes and registration costs. 【要確認】</p>
+            <p class="small">Buying costs such as the licensed agent's fee, taxes and registration are extra. 【要確認】</p>
             <a class="btn btn-ink" href="mailto:{EMAIL}?subject=Home%20No.%20{h['no']}%20({h['place']})">Enquire about this home</a>
             {f'<a class="btn btn-line side-tour" href="{h["tour"]}" rel="noopener" target="_blank">360° virtual tour ↗</a>' if h.get('tour') else ''}
             <p class="side-official"><span aria-hidden="true">✓</span> {PARTNER}</p>
